@@ -4,7 +4,7 @@
 
 `LinearRegression.basic` is 
 
-The existing `stats::lm` in `R` is an powerful function that can help us fit the basic linear regression model, and we can obtain the point estimate of $\beta$'s
+The existing `stats::lm` in `R` is an powerful function that can help us fit the basic linear regression model, and we can obtain the point estimate, standard error, $t$-value as well as $p$-value of $\beta$'s by using the `base:summary` function.
 
 Therefore, we develop an new R package `LinearRegression.basic`,
 

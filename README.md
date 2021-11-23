@@ -1,5 +1,6 @@
 # LinearRegression.basic
-=======
+
+`Linear Regression` is a commonly used approach for modelling the relationship between in Statistics, 
 
 `LinearRegression.basic` is 
 

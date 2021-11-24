@@ -1,10 +1,10 @@
 # LinearRegression.basic
 
   <!-- badges: start -->
-  [![R-CMD-check](https://github.com/ybshao0709/HW4.RPackage.YuboSHAO/workflows/R-CMD-check/badge.svg)](https://github.com/ybshao0709/HW4.RPackage.YuboSHAO/actions)
+  [![R-CMD-check](https://github.com/ybshao0709/LinearRegression.basic/workflows/R-CMD-check/badge.svg)](https://github.com/ybshao0709/LinearRegression.basic/actions)
   <!-- badges: end -->
-
-[![codecov](https://codecov.io/gh/ybshao0709/HW4.RPackage.YuboSHAO/branch/main/graph/badge.svg?token=AQ3L6TURSZ)](https://codecov.io/gh/ybshao0709/HW4.RPackage.YuboSHAO)
+  
+  [![codecov](https://codecov.io/gh/ybshao0709/LinearRegression.basic/branch/main/graph/badge.svg)](https://codecov.io/gh/ybshao0709/LinearRegression.basic)
 
 
 ### *1.What is "Linear Regression"?*

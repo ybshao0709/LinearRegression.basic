@@ -1,9 +1,8 @@
 # LinearRegression.basic
 
-
-<!-- badges: start -->
-[![R-CMD-check](https://github.com/ybshao0709/HW4.RPackage.YuboSHAO/workflows/R-CMD-check/badge.svg)](https://github.com/ybshao0709/HW4.RPackage.YuboSHAO/actions)
-<!-- badges: end -->
+  <!-- badges: start -->
+  [![R-CMD-check](https://github.com/ybshao0709/HW4.RPackage.YuboSHAO/workflows/R-CMD-check/badge.svg)](https://github.com/ybshao0709/HW4.RPackage.YuboSHAO/actions)
+  <!-- badges: end -->
 
 [![codecov](https://codecov.io/gh/ybshao0709/HW4.RPackage.YuboSHAO/branch/main/graph/badge.svg?token=AQ3L6TURSZ)](https://codecov.io/gh/ybshao0709/HW4.RPackage.YuboSHAO)
 

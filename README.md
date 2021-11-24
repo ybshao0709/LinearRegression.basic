@@ -1,6 +1,13 @@
 # LinearRegression.basic
 
 
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/ybshao0709/HW4.RPackage.YuboSHAO/workflows/R-CMD-check/badge.svg)](https://github.com/ybshao0709/HW4.RPackage.YuboSHAO/actions)
+<!-- badges: end -->
+
+[![codecov](https://codecov.io/gh/ybshao0709/HW4.RPackage.YuboSHAO/branch/main/graph/badge.svg?token=AQ3L6TURSZ)](https://codecov.io/gh/ybshao0709/HW4.RPackage.YuboSHAO)
+
+
 ### *1.What is "Linear Regression"?*
 
 [Linear Regression](https://en.wikipedia.org/wiki/Linear_regression) is a widely used statistical method for modelling the relationship between an outcome and one or more predictors. In practice, it can be used for prediction, as well as quantifying the strength of the linearly association between the outcome and the explanatory variables. The most commonly used approach for estimating the unknown parameters in a linear regression model is [ordinary least squares(OLS)](https://en.wikipedia.org/wiki/Ordinary_least_squares). 

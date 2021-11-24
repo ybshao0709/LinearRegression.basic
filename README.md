@@ -14,10 +14,15 @@ However, the `stats::lm` function can not directly output the confidence interva
 ### *3.What can "LinearRegression.basic" package do?*
 
 * Fit a linear regression model with or without an intercept.
-* Obtain the point estimates, standard errors of $\beta$'s.
+* Obtain the point estimates and standard errors of $\beta$'s.
 * Obtain the confidence interval of one single $\hat{\beta}$'s, or the confidence interval of a linear conbination of two given $\hat{\beta}$'s.
 * Obtain the $t$-statistics from partial $t$-test, and the corresponding $p$-value.
 * Obtain the $F$-statistics from sequential $F$-test, and the corresponding $p$-value.
 * Obtain the residual sum of square (SSE).
 
 
+---
+
+Use the following code to find more details about the "LinearRegression.basic" package:
+
+`browseVignettes("LinearRegression.basic")`

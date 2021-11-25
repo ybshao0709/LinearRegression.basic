@@ -24,7 +24,7 @@ However, the `stats::lm` function can not directly output the confidence interva
 * Obtain the confidence interval of one single $\hat{\beta}$'s, or the confidence interval of a linear conbination of two given $\hat{\beta}$'s.
 * Obtain the $t$-statistics from partial $t$-test, and the corresponding $p$-value.
 * Obtain the $F$-statistics from sequential $F$-test, and the corresponding $p$-value.
-* Obtain the residual sum of square (SSE).
+* Obtain the $R^2$ and adjusted $R^2$.
 
 
 ---

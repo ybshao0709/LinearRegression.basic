@@ -4,7 +4,9 @@
   [![R-CMD-check](https://github.com/ybshao0709/LinearRegression.basic/workflows/R-CMD-check/badge.svg)](https://github.com/ybshao0709/LinearRegression.basic/actions)
   <!-- badges: end -->
   
-  [![codecov](https://codecov.io/gh/ybshao0709/LinearRegression.basic/branch/main/graph/badge.svg)](https://codecov.io/gh/ybshao0709/LinearRegression.basic)
+   <!-- badges: start -->
+   [![codecov](https://codecov.io/gh/ybshao0709/LinearRegression.basic/branch/main/graph/badge.svg)](https://codecov.io/gh/ybshao0709/LinearRegression.basic)
+   <!-- badges: end -->
 
 ## Introduction
 

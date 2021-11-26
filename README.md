@@ -37,6 +37,21 @@ Specifically, users can obtain the following results easily by using `LinearRegr
 
 The reliability and stability of this package has been fully and seriously tested.
 
+
+## Installation
+
+Install `LinearRegression.basic` package with vignettes from github:
+
+```
+devtools::install_github("ybshao0709/LinearRegression.basic", build_vignettes = T)
+```
+Load package by:
+
+```
+library("LinearRegression.basic")
+```
+
+
 ---
 
 Use the following code to find more details about the "LinearRegression.basic" package:

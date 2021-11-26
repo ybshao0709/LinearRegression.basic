@@ -43,10 +43,12 @@ test_that("linear_Regression works", {
   x <- as.matrix(state.x77[,c(1:3, 5:8)])
   y <- state.x77$`Life Exp`
   lower.bound1 <- as.vector(linear_Regression(y, x, CI.beta = T, CI.level = 0.99)$model.coefs[, 3])
-  higher.bound1 <- as.vector(linear_Regression(y, x, CI.beta = T, CI.level = 0.95)$model.coefs[, 4])
+  higher.bound1 <- as.vector(linear_Regression(y, x, CI.beta = T, CI.level = 0.99)$model.coefs[, 4])
   lower.bound2 <- as.vector(confint(lm(y ~ x), level = 0.99)[,1])
   higher.bound2 <- as.vector(confint(lm(y ~ x), level = 0.99)[,2])
   expect_equal(lower.bound1, lower.bound2)
   expect_equal(higher.bound1, higher.bound2)
 })
+
+
 

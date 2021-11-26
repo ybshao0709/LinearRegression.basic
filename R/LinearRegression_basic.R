@@ -1,6 +1,6 @@
 #'linear_Regression
 #'
-#'@importFrom stats
+#'@importFrom stats pf pt qt
 #'
 #'@param y a column vector, treated as outcome.
 #'

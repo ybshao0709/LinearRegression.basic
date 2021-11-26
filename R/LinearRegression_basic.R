@@ -2,6 +2,8 @@
 #'
 #'@importFrom stats pf pt qt
 #'
+#'@import car
+#'
 #'@param y a column vector, treated as outcome.
 #'
 #'@param x a numerical matrix, treated as predictor.

@@ -16,7 +16,7 @@
 
 ### *2."lm" function in R*
 
-The existing `stats::lm` in `R` is an powerful function that can help us fit the basic linear regression model. By further applying the `base:summary` function, we can obtain the point estimate, standard error, $t$-statistics and $p$-value of each single $\beta$, and the result from the overall $F$-test. 
+The existing `stats::lm` in `R` is a powerful function that can help us fit the basic linear regression model. By further applying the `base:summary` function, we can obtain the point estimate, standard error, $t$-statistics and $p$-value of each single $\beta$, and the result from the overall $F$-test. 
 
 However, the `stats::lm` function can not directly output the confidence interval(CI) of $\hat{\beta}$. Moreover, as one of the most important matrices derived from linear regression model, hat matrix contains many important information (especially when we want to deal with some residual-related problems), but unfortunately the `stats::lm` function doesn't provide it directly. 
 

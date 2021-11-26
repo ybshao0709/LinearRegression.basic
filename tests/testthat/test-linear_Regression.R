@@ -145,5 +145,4 @@ test_that("linear_Regression works", {
   expect_equal(GLH.p.actual, GLH.p.expected)
   expect_equal(GLH.dfr.actual, GLH.dfr.expected)
   expect_equal(GLH.dfe.actual, GLH.dfe.expected)
-
 })

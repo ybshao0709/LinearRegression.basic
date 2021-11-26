@@ -7,7 +7,6 @@
   [![codecov](https://codecov.io/gh/ybshao0709/LinearRegression.basic/branch/main/graph/badge.svg)](https://codecov.io/gh/ybshao0709/LinearRegression.basic)
 
 ## Introduction
----
 
 ### *1.What is "Linear Regression"?*
 

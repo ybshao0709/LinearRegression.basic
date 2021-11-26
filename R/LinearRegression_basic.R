@@ -1,6 +1,6 @@
 #'linear_Regression
 #'
-#'@importFrom stats pf pt
+#'@importFrom stats
 #'
 #'@param y a column vector, treated as outcome.
 #'
@@ -38,18 +38,9 @@
 #'@export
 #'
 
-linear_Regression <- function(y,
-                              x,
-                              intercept = T,
-                              CI.beta = F,
-                              CI.level = 0.95,
-                              partial.T = T,
-                              overall.F = T,
-                              r.square = F,
-                              Hat.matrix = F,
-                              GLH.F = F,
-                              contrast.matrix = NULL,
-                              c.matrix = NULL) {
+linear_Regression <- function(y, x, intercept = T, CI.beta = F, CI.level = 0.95, partial.T = T, overall.F = T,
+                              r.square = F, Hat.matrix = F, GLH.F = F, contrast.matrix = NULL, c.matrix = NULL) {
+
   ## build covariate and outcome matrix
   x <- as.matrix(x)
   y <- as.matrix(y)

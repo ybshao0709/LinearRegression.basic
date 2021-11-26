@@ -37,8 +37,6 @@ Specifically, users can obtain the following results easily by using `LinearRegr
 
 The reliability and stability of this package has been fully and seriously tested.
 
-=======
-
 
 ## Installation
 

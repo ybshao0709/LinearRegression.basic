@@ -20,18 +20,18 @@ library(LinearRegression.basic)
 
 ## Introduction
 
-### *1.What is "Linear Regression"?*
+### *(1).What is "Linear Regression"?*
 
 [Linear Regression](https://en.wikipedia.org/wiki/Linear_regression) is a widely used statistical method for modelling the relationship between an outcome and one or more predictors. In practice, it can be used for prediction, as well as quantifying the strength of the linearly association between the outcome and the explanatory variables. The most commonly used approach for estimating the unknown parameters in a linear regression model is [ordinary least squares(OLS)](https://en.wikipedia.org/wiki/Ordinary_least_squares). 
 
-### *2."lm" function in R*
+### *(2)."lm" function in R*
 
 The existing `stats::lm` in `R` is a powerful function that can help us fit the basic linear regression model. By further applying the `base:summary` function, we can obtain the point estimate, standard error, $t$-statistics and $p$-value of each single $\beta$, and the result from the overall $F$-test. 
 
 However, the `stats::lm` function can not directly output the confidence interval(CI) of $\hat{\beta}$. Moreover, as one of the most important matrices derived from linear regression model, hat matrix contains many important information (especially when we want to deal with some residual-related problems), but unfortunately the `stats::lm` function doesn't provide it directly. 
 
 
-### *3.What can "LinearRegression.basic" package do?*
+### *(3).What can "LinearRegression.basic" package do?*
 
 We develop an user-friendly R package `LinearRegression.basic`, which can be seen as an extension of the existing `stats::lm`function. 
 
@@ -47,7 +47,52 @@ Specifically, users can obtain the following results easily by using `LinearRegr
 * Conduct the General Linear Hypothesis (GLH) testing.
 
 
-## Installation
+## Configuration and Installation
 
-* `LinearRegression.basic` is a package based on R, so you need [R](https://cloud.r-project.org/) first. We also strongly recommend the [RStudio](https://www.rstudio.com/products/rstudio/download/) integrated development environment as a user-friendly graphical wrapper for R.
+* `LinearRegression.basic` is a package based on [R](https://cloud.r-project.org/), please install R first. We also strongly recommend you install [RStudio](https://www.rstudio.com/products/rstudio/download/), which is an integrated development environment (IDE) for R.
 
+* `LinearRegression.basic` can be downloaded from github now:
+
+  ```
+  devtools::install_github("ybshao0709/LinearRegression.basic", build_vignettes = T)
+  ```
+
+* You might also need to install the `devtools` first. You can configure the environment by following these steps:
+ 
+  (1) Install the release version of devtools from CRAN with `install.packages("devtools")`.
+  
+  (2) Setting up working development environment:
+      
+      *- Windows*: Install [Rtools](https://cran.r-project.org/bin/windows/Rtools/).
+      
+      *- Mac*: Install [Xcode](https://developer.apple.com/xcode/) from the Mac App Store.
+      
+      *- Linux*: Install a compiler and various development libraries (details vary across differnet flavors of Linux).
+  
+  (3) Follow the instructions below depending on platform:
+      
+      *- Mac & Linux:* 
+      ```
+      devtools::install_github("hadley/devtools")
+      ```
+      
+      *- Windows:* 
+      
+      ```
+      library(devtools)
+      build_github_devtools()
+
+      #### Restart R before continuing ####
+      install.packages("devtools.zip", repos = NULL)
+
+      # Remove the package after installation
+      unlink("devtools.zip")
+      ```
+      
+  Find more tutorials [here](https://www.r-project.org/nosvn/pandoc/devtools.html).
+
+## Loading packages
+
+```
+library(LinearRegression.basic)
+```

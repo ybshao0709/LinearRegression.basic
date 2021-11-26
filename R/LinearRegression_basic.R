@@ -32,16 +32,11 @@
 #'@examples
 #'library(LinearRegression.basic)
 #'
-#'linear_regression((c(1, 3, 5, 7, 9), c(2, 3, 5, 8, 11)))
-#'linear_regression(state.x77[, 4], state.x77[, c(1:3)])
+#'linear_Regression(c(1, 3, 5, 7, 9), c(2, 3, 5, 8, 11))
+#'linear_Regression(state.x77[, 4], state.x77[, c(1:3)])
 #'
 #'@export
 #'
-
-options(scipen = 5)
-
-# model <- lm(state.x77$`Life Exp` ~ state.x77$Population + state.x77$Income + state.x77$Illiteracy)
-# k <- summary(model)
 
 linear_Regression <- function(y,
                               x,
@@ -137,7 +132,7 @@ linear_Regression <- function(y,
   if (overall.F == T) {
     df.sse <- n - p
     df.ssr <- p - intercept
-    if (r.square = T) {
+    if (r.square == T) {
       overall_F <- (R_squared / (1 - R_squared)) * (df.sse / df.ssr)
     } else {
       if (intercept == T) {
@@ -158,9 +153,33 @@ linear_Regression <- function(y,
   }
 
   ## calculate hat matrix
-  if (Hat.matrix = T) {
+  if (Hat.matrix == T) {
     hat.matrix = x %*% solve(t(x) %*% x) %*% t(x)
     output_list$hat.matrix <- hat.matrix
+  }
+
+  ## conduct the GLH test
+  if (GLH.F == T) {
+    if (is.null(c.matrix) == T) {
+      k <- nrow(contrast.matrix)
+      c.matrix <- rep(0, k)
+    }
+    c.matrix <- as.matrix(c.matrix)
+    contrast.matrix <- as.matrix(contrast.matrix)
+    GLH.F.statistics <-
+      as.double(((
+        t(contrast.matrix %*% Esti.beta - c.matrix) *
+          solve(contrast.matrix %*% solve(t(x) %*% x) %*% t(contrast.matrix)) *
+          (contrast.matrix %*% Esti.beta - c.matrix)
+      ) / nrow(contrast.matrix)) / MSE)
+    GLH.dfr <- nrow(contrast.matrix)
+    GLH.dfe <- n - p
+    p_value <- 1 - pf(GLH.F.statistics, GLH.dfr, GLH.dfe)
+    GLH.test <- list(GLH.F.statistics = GLH.F.statistics,
+                     p.value = p_value,
+                     dfr = GLH.dfr,
+                     dfe = GLH.dfe)
+    output_list$GLH.test <- GLH.test
   }
 
   return(output_list)

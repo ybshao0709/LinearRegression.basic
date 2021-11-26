@@ -25,7 +25,7 @@ Therefore, we develop an user-friendly R package `LinearRegression.basic`, which
 * Obtain the point estimates and standard errors of $\beta$'s.
 * Obtain the confidence interval of $\hat{\beta}$'s.
 * Obtain the $t$-statistics from partial $t$-test, and the corresponding $p$-value.
-* Obtain the $F$-statistics from sequential $F$-test, and the corresponding $p$-value.
+* Obtain the $F$-statistics from partial $F$-test, and the corresponding $p$-value.
 * Obtain the $R^2$ and adjusted-$R^2$.
 * Obtain the $hat$-matrix.
 

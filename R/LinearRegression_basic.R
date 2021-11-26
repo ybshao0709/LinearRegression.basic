@@ -114,7 +114,7 @@ linear_Regression <- function(y, x, intercept = T, CI.beta = F, CI.level = 0.95,
     }
     sse <- sum(residual ^ 2)
     R_squared <- 1 - sse / ssy
-    Adjusted_R_squared <- 1 - (sse / (n - p)) / (ssy / (n - 1))
+    Adjusted_R_squared <- 1 - (sse / (n - p)) / (ssy / (n - intercept))
     R.squared <- list(R.squared = R_squared, Adjusted.R.squared = Adjusted_R_squared)
     output_list$R_squared <-R.squared
   }

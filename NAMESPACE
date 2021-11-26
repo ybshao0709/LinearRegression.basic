@@ -1,1 +1,3 @@
 exportPattern("^[[:alpha:]]+")
+
+importFrom("stats", "pf", "pt", "qt")

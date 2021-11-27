@@ -23,11 +23,11 @@ However, the `stats::lm` function can not directly output the confidence interva
 
 ### *3.What can "LinearRegression.basic" package do?*
 
-We develop an user-friendly R package `LinearRegression.basic`, which can be seen as an extension of the existing `stats::lm`function. 
+We develop an user-friendly R package `LinearRegression.basic`, which can be seen as an extension of the existing `stats::lm` function. 
 
-Specifically, users can obtain the following results easily by using `LinearRegression.basic` package:
+Specifically, users can obtain the following results easily by using `LinearRegression.basic::linear_Regression()` function:
 
-* Fit a linear regression model with or without an intercept.
+* Fit a linear regression model without regular terms, with or without an intercept.
 * Obtain the point estimates and standard errors of $\beta$'s.
 * Obtain the confidence interval of $\hat{\beta}$'s.
 * Obtain the $t$-statistics from partial $t$-test, and the corresponding $p$-value.
@@ -46,6 +46,7 @@ Install `LinearRegression.basic` package with vignettes from github:
 ```
 devtools::install_github("ybshao0709/LinearRegression.basic", build_vignettes = T)
 ```
+
 Load package by:
 
 ```

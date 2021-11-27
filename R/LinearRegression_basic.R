@@ -1,47 +1,85 @@
-#'linear_Regression
+#'Fitting Linear Regression Models
+#'
+#'linear_Regression is used to fit linear regression models. It can be used to carry out regression,
+#'calculate confidence interval of interested parameters, conduct Partial T Test, Partial F Test and even
+#'General Linear Hypothesis test.
 #'
 #'@importFrom stats pf pt qt
 #'
-#'@import car
+#'@import car ggplot2 bench
 #'
 #'@param y a column vector, treated as outcome.
 #'
 #'@param x a numerical matrix, treated as predictor.
 #'
-#'@param intercept logical, "TRUE" by default. If "TRUE", the model includes the intercept.
+#'@param intercept logical, "TRUE" by default.
+#'If "FALSE", the model will not include the intercept.
 #'
-#'@param CI.beta logical, "FALSE" by default. If "FALSE", the results will not output the confidence interval of betas.
+#'@param CI.beta logical, "FALSE" by default.
+#'If "TRUE", the results will output the confidence interval of betas.
 #'
-#'@param CI.level a numeric number specifying the alpha-level when calculate CI.
+#'@param CI.level a numeric number specifying the alpha-level when calculate CIs of betas (0.95 by default).
+#'Only use when "CI.beta = TRUE"
 #'
-#'@param partial.T logical, "TRUE" by default. If "TRUE", the results will output the results of partial T-test and corresponding p-values.
+#'@param partial.T logical, "TRUE" by default.
+#'If "FALSE", the results will not output the results of partial T-test and corresponding p-values.
 #'
-#'@param overall.F logical, "TRUE" by default. If "TRUE", the results will output the results of overall F-test and the corresponding p-value.
+#'@param overall.F logical, "TRUE" by default.
+#'If "FALSE", the results will not output the results of overall F-test and the corresponding p-value.
 #'
-#'@param r.square logical, "FALSE" by default. If "FALSE", the results will not output the R Square and adjusted R Square.
+#'@param r.square logical, "FALSE" by default.
+#'If "TRUE", the results will output the R Square and adjusted R Square of the fitted model.
 #'
-#'@param Hat.matrix logical, "FALSE" by default. If "FALSE", the hat matrix will not be provided.
+#'@param Hat.matrix logical, "FALSE" by default.
+#'If "TRUE", the hat matrix will be provided.
 #'
-#'@param GLH.F logical, "FALSE" by default. If "FALSE", the function will not conduct general linear hypothesis testing.
+#'@param GLH.F logical, "FALSE" by default.
+#'If "TRUE", general linear hypothesis testing will be conducted.
 #'
-#'@param contrast.matrix a numerical matrix (or vector) giving linear combinations of coefficients by rows. Only use when "GLH.F = TRUE".
+#'@param contrast.matrix a numerical matrix (or vector) giving linear combinations of coefficients by rows.
+#'Only use when "GLH.F = TRUE".
 #'
-#'@param c.matrix a vector represents the right-hand-side vector for GLH test. Only use when "GLH.F = TRUE".
-#'Can be omitted, in which case it defaults to a vector of zeroes.
+#'@param c.matrix A vector represents the right-hand-side constant vector for GLH test.
+#'It defaults to a vector of zeroes if this argument is omitted.
+#'Only use when "GLH.F = TRUE".
 #'
 #'@return A list contains regression results.
 #'
 #'@examples
-#'library(LinearRegression.basic)
+#'  # fit a regression model
+#'  linear_Regression(state.x77[, 4], state.x77[, c(1:3)])
 #'
-#'linear_Regression(c(1, 3, 5, 7, 9), c(2, 3, 5, 8, 11))
-#'linear_Regression(state.x77[, 4], state.x77[, c(1:3)])
+#'  x <- matrix(c(-1, -2, -3, -4, -5, 1, 3, 5, 7, 9), nrow = 5)
+#'  y <- c(2, 5, 8, 11, 19)
+#'  # fit the linear model without an intercept
+#'  linear_Regression(y, x, intercept = FALSE)
+#'
+#'  x <- as.matrix(state.x77[,c(1:3, 5:8)])
+#'  y <- state.x77$`Life Exp`
+#'  # calculate 99% confidence interval of beta-hat
+#'  linear_Regression(y, x, CI.beta = TRUE, CI.level = 0.99)
+#'
+#'  # conduct GLH testing
+#'  contrast.matrix <- matrix(c(0, 1, -1, 0, 0, 0, 0, 0), nrow = 1)
+#'  c.matrix <- c(0)
+#'  linear_Regression(y, x, contrast.matrix = contrast.matrix, GLH.F = TRUE)
 #'
 #'@export
 #'
 
-linear_Regression <- function(y, x, intercept = T, CI.beta = F, CI.level = 0.95, partial.T = T, overall.F = T,
-                              r.square = F, Hat.matrix = F, GLH.F = F, contrast.matrix = NULL, c.matrix = NULL) {
+linear_Regression <- function(y,
+                              x,
+                              intercept = T,
+                              CI.beta = F,
+                              CI.level = 0.95,
+                              partial.T = T,
+                              overall.F = T,
+                              r.square = F,
+                              Hat.matrix = F,
+                              GLH.F = F,
+                              contrast.matrix = NULL,
+                              c.matrix = NULL) {
+
 
   ## build covariate and outcome matrix
   x <- as.matrix(x)
@@ -70,10 +108,10 @@ linear_Regression <- function(y, x, intercept = T, CI.beta = F, CI.level = 0.95,
   }
 
   ## Estimation: Beta-hat, Y-hat, residuals
-  Esti.beta <- solve(t(x) %*% x) %*% t(x) %*% y
-  yhat <- x %*% Esti.beta
+  Esti.beta <- solve(t(x) %*% x) %*% t(x) %*% y  # normal equation
+  yhat <- x %*% Esti.beta # by "linear assumption"
   residual <- y - yhat
-  MSE <- t(residual) %*% residual / (n - p)
+  MSE <- t(residual) %*% residual / (n - p)  # unbias estimator
 
   ## Standard errors of Beta-hat
   var_Esti.beta <- c(MSE) * diag(solve(t(x) %*% x))
@@ -109,9 +147,10 @@ linear_Regression <- function(y, x, intercept = T, CI.beta = F, CI.level = 0.95,
 
   ## calculate R-square and adjusted R-square
   if (r.square == T) {
-    if (intercept == T) {
-      ssy <- sum((y - sum(y) / n) ^ 2)
-    } else {
+    if (intercept == T) { # if the model has an intercept
+      y.bar <- sum(y) / n
+      ssy <- sum((y - y.bar) ^ 2)
+    } else {  # if the model has no intercept
       ssy <- sum(y ^ 2)
     }
     sse <- sum(residual ^ 2)
@@ -153,9 +192,9 @@ linear_Regression <- function(y, x, intercept = T, CI.beta = F, CI.level = 0.95,
 
   ## conduct the GLH test
   if (GLH.F == T) {
-    if (is.null(c.matrix) == T) {
+    if (is.null(c.matrix) == T) {  # if c.matrix is omitted
       k <- nrow(contrast.matrix)
-      c.matrix <- rep(0, k)
+      c.matrix <- rep(0, k)  # 0 vector by default
     }
     c.matrix <- as.matrix(c.matrix)
     contrast.matrix <- as.matrix(contrast.matrix)
@@ -164,7 +203,7 @@ linear_Regression <- function(y, x, intercept = T, CI.beta = F, CI.level = 0.95,
         t(contrast.matrix %*% Esti.beta - c.matrix) *
           solve(contrast.matrix %*% solve(t(x) %*% x) %*% t(contrast.matrix)) *
           (contrast.matrix %*% Esti.beta - c.matrix)
-      ) / nrow(contrast.matrix)) / MSE)
+      ) / nrow(contrast.matrix)) / MSE)  # calculate F statistics
     GLH.dfr <- nrow(contrast.matrix)
     GLH.dfe <- n - p
     p_value <- 1 - pf(GLH.F.statistics, GLH.dfr, GLH.dfe)
@@ -174,6 +213,5 @@ linear_Regression <- function(y, x, intercept = T, CI.beta = F, CI.level = 0.95,
                      dfe = GLH.dfe)
     output_list$GLH.test <- GLH.test
   }
-
   return(output_list)
 }

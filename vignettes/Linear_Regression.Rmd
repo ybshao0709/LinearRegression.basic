@@ -19,8 +19,6 @@ library(LinearRegression.basic)
 library(ggplot2)
 library(car)
 library(bench)
-library(tidyr)
-library(ggbeeswarm)
 ```
 
 ## Introduction
@@ -347,7 +345,7 @@ Let's compare the speed by using `bench:mark()` function:
 
 *(Note: package `bench` should be installed)*
 
-```{r}
+```{r,collapse=TRUE}
 y <- as.matrix(state.x77$`Life Exp`)
 colnames(y) <- "Life Exp"
 x <- as.matrix(state.x77[,c(1:3, 5:8)])
@@ -361,15 +359,13 @@ code_efficiency_comparison <-  bench::mark(linear_Regression = {
   as.vector(beta.expected)
 })  
 
+summary(code_efficiency_comparison)
+
 itr.per.sec <- as.numeric(code_efficiency_comparison[[4]])
 itr.per.sec.ratio <- itr.per.sec[1] / itr.per.sec[2]
 ```
 
 From the results of `bench::mark`, it can be seen that `LinearRegression.basic::linear_Regression` is about `r round(itr.per.sec.ratio, digits = 2)` times as faster as `stats:lm`.
-
-```{r, fig.height = 3, fig.width = 5, fig.align = "left", warning=FALSE}
-ggplot2::autoplot(code_efficiency_comparison, type = c("beeswarm"))
-```
 
 Also, we compare the speed of conducting GLH test:
 
@@ -389,12 +385,11 @@ code_efficiency_comparison.GLH <- bench::mark("linear_Regression" = {
   as.vector(GLH.F.statistics.expected)
 })
 
+summary(code_efficiency_comparison.GLH)
+
 GLH.itr.per.sec <- as.numeric(code_efficiency_comparison.GLH[[4]])
 GLH.itr.per.sec.ratio <- GLH.itr.per.sec[1] / GLH.itr.per.sec[2]
 ```
 
 It can be seen that `LinearRegression.basic::linear_Regression` is about `r round(GLH.itr.per.sec.ratio, digits = 2)` times as faster as `car::linearHypothesis` when conducting the GLH test.
 
-```{r, fig.height = 3, fig.width = 5, fig.align = "left", warning=FALSE}
-ggplot2::autoplot(code_efficiency_comparison.GLH, type = c("beeswarm"))
-```

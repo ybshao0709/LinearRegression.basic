@@ -19,6 +19,8 @@ library(LinearRegression.basic)
 library(ggplot2)
 library(car)
 library(bench)
+library(tidyr)
+library(ggbeeswarm)
 ```
 
 ## Introduction
@@ -366,7 +368,7 @@ itr.per.sec.ratio <- itr.per.sec[1] / itr.per.sec[2]
 From the results of `bench::mark`, it can be seen that `LinearRegression.basic::linear_Regression` is about `r round(itr.per.sec.ratio, digits = 2)` times as faster as `stats:lm`.
 
 ```{r, fig.height = 3, fig.width = 5, fig.align = "left", warning=FALSE}
-plot(code_efficiency_comparison)
+ggplot2::autoplot(code_efficiency_comparison, type = c("beeswarm"))
 ```
 
 Also, we compare the speed of conducting GLH test:
@@ -394,5 +396,5 @@ GLH.itr.per.sec.ratio <- GLH.itr.per.sec[1] / GLH.itr.per.sec[2]
 It can be seen that `LinearRegression.basic::linear_Regression` is about `r round(GLH.itr.per.sec.ratio, digits = 2)` times as faster as `car::linearHypothesis` when conducting the GLH test.
 
 ```{r, fig.height = 3, fig.width = 5, fig.align = "left", warning=FALSE}
-plot(code_efficiency_comparison.GLH)
+ggplot2::autoplot(code_efficiency_comparison.GLH, type = c("beeswarm"))
 ```

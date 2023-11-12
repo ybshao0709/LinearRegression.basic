@@ -1,7 +1,7 @@
 # LinearRegression.basic
 
   <!-- badges: start -->
-  [![R-CMD-check](https://github.com/ybshao0709/LinearRegression.basic/workflows/R-CMD-check/badge.svg)](https://github.com/ybshao0709/LinearRegression.basic/actions)
+  [![R-CMD-check](https://github.com/ybshao0709/LinearRegression.basic/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ybshao0709/LinearRegression.basic/actions/workflows/R-CMD-check.yaml)
   <!-- badges: end -->
   
    <!-- badges: start -->

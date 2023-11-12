@@ -1,4 +1,4 @@
-#'Fitting Linear Regression Models
+#'Fitting Linear Regression Model
 #'
 #'linear_Regression is used to fit linear regression models. It can be used to carry out regression,
 #'calculate confidence interval of interested parameters, conduct Partial T Test, Partial F Test and even
